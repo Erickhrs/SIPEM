@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIPEM</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+</head>
+
+<body>
+    <section id="container-main">
+        <header>
+            <h1><span class="colorY">SIPEM</span>- SISTEMA IDENTIFICADOR DE PRODUTOS EMBRA MAIS</h1>
+        </header>
+        <section>
+            <p>De que forma deseja gerar o identificador?</p>
+            <button onclick="StartCard('f1')">IDENTIFICADOR ÚNICO</button>
+            <button onclick="StartCard('f2')">VÁRIOS IDENTIFICADORES </button>
+        </section>
+    </section>
+
+    <section id="container-f1">
+        <nav><span onclick="CloseCard('f1')">🔴</span></nav>
+        <label for="id">IDENTIFICADOR:</label>
+        <input type="text" placeholder="adicione o ID aqui" name="id" id="in_id">
+        <label for="produto">PRODUTO:</label>
+        <input type="nome do produto" placeholder="adicione o nome do produto aqui" name="produto" id="in_produto">
+        <button onclick="getData('f1')" id="generateF1">GERAR</button>
+    </section>
+
+    <section id="container-f2">
+        <nav><span onclick="CloseCard('f2')">🔴</span></nav>
+        <label for="dados">ANEXE SEU ARQUIVO EXCEL</label>
+        <input type="file" id="excel_file" accept=".xls, .xlsx">
+        <button onclick="getData('f2')" id="generateF2">GERAR</button>
+    </section>
+
+    <button id="openCardButton" class="question-button">&#63;</button>
+
+    <div id="cardContainer" class="card-container">
+        <div class="card">
+            <div id="infosCard" style="border: 1px solid beige;background-color: aliceblue;border-radius: 20px;">
+                <h2 style="text-align: center;">INFOS:</h2>
+                <p><span style="color: darkblue; font-weight: bold;">MÁXIMO CARACTERES ID:</span> 16</p>
+                <p><span style="color: darkblue; font-weight: bold;">MÁXIMO CARACTERES PRODUTOS:</span> 150</p>
+                <p><span style="color: darkblue; font-weight: bold;">TIPO DE ARQUIVOS ACEITOS:</span> .xls, .xlsx</p>
+                <p><span style="color: darkblue; font-weight: bold;">VERSÕES DISPONÍVEIS:</span> Amarelo (PADRÃO) e
+                    Branco</p>
+                <p><span style="color: darkblue; font-weight: bold;">VERSÃO SISTEMA:</span>1.0</p>
+            </div>
+            <p style="color: black; font-weight: bold;"">TODOS OS DIREITOS RESERVADOS PARA EMBRAMAIS SERVIÇO DE INSTALAÇÃO E MANUTENÇÃO LTDA ©</p>
+              <p style=" font-size: 10px; margin-top: -10px;"">Sistema desenvolvido por Erick Rosa. Para suporte ou
+                reportar erros, entre em contato através do e-mail: tierickrosa@gmail.com</p>
+            <button id="closeCardButton"
+                style="padding: 15px; background-color: dodgerblue; color: white; font-weight: bolder; border: none; border-radius: 109px; cursor: pointer;">Fechar</button>
+        </div>
+    </div>
+
+    <div class="color-toggle">
+        <button id="colorButton" style="background-color:#ffffff;">
+            <span id="icon" class="material-icons">🎨</span>
+        </button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="/main.js"></script>
+
+    <script>
+   // Selecionar o elemento de input
+var inputField1 = document.getElementById('in_id');
+
+// Adicionar um ouvinte de evento para o evento 'input'
+inputField1.addEventListener('input', function (event) {
+    // Verificar se o número de caracteres é maior que 16
+    if (event.target.value.length > 16) {
+        // Se for, definir o valor do input para os primeiros 16 caracteres
+        event.target.value = event.target.value.slice(0, 16);
+    }
+
+    // Verificar se o valor inserido contém letras
+    if (/[a-zA-Z]/.test(event.target.value)) {
+        // Mostrar alerta de erro e limpar o campo
+        alert('ERRO = Por favor, insira apenas números.');
+        event.target.value = '';
+    }
+});
+
+
+        // Selecionar o elemento de input
+        var inputField2 = document.getElementById('in_produto');
+
+        // Adicionar um ouvinte de evento para o evento 'input'
+        inputField2.addEventListener('input', function (event) {
+            // Verificar se o número de caracteres é maior que 16
+            if (event.target.value.length > 150) {
+                // Se for, definir o valor do input para os primeiros 16 caracteres
+                event.target.value = event.target.value.slice(0, 150);
+            }
+        });
+
+
+        //botão lado
+        document.getElementById('openCardButton').addEventListener('click', function () {
+            document.getElementById('cardContainer').style.display = 'flex';
+        });
+
+        document.getElementById('closeCardButton').addEventListener('click', function () {
+            document.getElementById('cardContainer').style.display = 'none';
+        });
+
+        document.getElementById('colorButton').addEventListener('click', function () {
+            const body = document.body;
+            const icon = document.getElementById('icon');
+            const button = document.getElementById('colorButton');
+
+            if (body.style.backgroundColor === 'rgb(254, 196, 3)') {
+                body.style.backgroundColor = '#ffffff';
+                icon.textContent = '🎨'; // Ícone para fundo amarelo
+                button.style.backgroundColor = '#FEC403'; // Botão fica amarelo
+                button.style.borderColor = '#FEC403'; // Borda fica amarela
+                icon.style.color = '#ffffff'; // Ícone fica branco
+            } else {
+                body.style.backgroundColor = '#FEC403';
+                icon.textContent = '🎨'; // Ícone para fundo branco
+                button.style.backgroundColor = '#ffffff'; // Botão fica branco
+                button.style.borderColor = '#ffffff'; // Borda fica branca
+                icon.style.color = '#FEC403'; // Ícone fica amarelo
+            }
+        });
+    </script>
+</body>
+
+</html>
