@@ -543,7 +543,7 @@ function Integration(QR, PRODUCT, color, source) {
     }
     else if (color == "rgb(255, 255, 255)") {
         //fundo branco
-        alert("fundo branco")
+        alert("VERSÃO BRANCO AINDA NÃO ESTÁ DISPONÍVEL")
     }
     else {
         alert("ERRO: TEMPLATE NÃO IDENTIFICADO, VERIFIQUE E TENTE NOVAMENTE! ESCOLHIDO: " + color)
