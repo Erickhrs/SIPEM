@@ -14,7 +14,7 @@
 <body>
     <section id="container-main">
         <header>
-            <h1><span class="colorY">SIPEM</span>- SISTEMA IDENTIFICADOR DE PRODUTOS EMBRA MAIS</h1>
+            <h1><span class="colorY">SIPEM</span>- SISTEMA IDENTIFICADOR DE PRODUTOS EMBRAMAIS</h1>
         </header>
         <section>
             <p>De que forma deseja gerar o identificador?</p>
@@ -46,10 +46,10 @@
             <div id="infosCard" style="border: 1px solid beige;background-color: aliceblue;border-radius: 20px;">
                 <h2 style="text-align: center;">INFOS:</h2>
                 <p><span style="color: darkblue; font-weight: bold;">MÁXIMO CARACTERES ID:</span> 16</p>
-                <p><span style="color: darkblue; font-weight: bold;">MÁXIMO CARACTERES PRODUTOS:</span> 150</p>
+                <p><span style="color: darkblue; font-weight: bold;">MÁXIMO CARACTERES PRODUTOS:</span> 140</p>
                 <p><span style="color: darkblue; font-weight: bold;">TIPO DE ARQUIVOS ACEITOS:</span> .xls, .xlsx</p>
                 <p><span style="color: darkblue; font-weight: bold;">VERSÕES DISPONÍVEIS:</span> Amarelo (PADRÃO)</p>
-                <p><span style="color: darkblue; font-weight: bold;">VERSÃO SISTEMA:</span>1.0</p>
+                <p><span style="color: darkblue; font-weight: bold;">VERSÃO SISTEMA:</span>1.1</p>
             </div>
             <p style="color: black; font-weight: bold;"">TODOS OS DIREITOS RESERVADOS PARA EMBRAMAIS SERVIÇO DE INSTALAÇÃO E MANUTENÇÃO LTDA ©</p>
               <p style=" font-size: 10px; margin-top: -10px;"">Sistema desenvolvido por Erick Rosa. Para suporte ou
@@ -66,7 +66,7 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
-    <script src="/main.js"></script>
+    <script src="main.js"></script>
 
     <script>
    // Selecionar o elemento de input
@@ -95,9 +95,9 @@ inputField1.addEventListener('input', function (event) {
         // Adicionar um ouvinte de evento para o evento 'input'
         inputField2.addEventListener('input', function (event) {
             // Verificar se o número de caracteres é maior que 16
-            if (event.target.value.length > 150) {
+            if (event.target.value.length > 140) {
                 // Se for, definir o valor do input para os primeiros 16 caracteres
-                event.target.value = event.target.value.slice(0, 150);
+                event.target.value = event.target.value.slice(0, 140);
             }
         });
 

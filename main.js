@@ -56,8 +56,9 @@ function getData(element) {
                 var QR = qrcodes[c].innerHTML
                 var color = window.getComputedStyle(document.body).getPropertyValue('background-color');
                 var source = "f1"
+                var idc = datas.id
 
-                Integration(QR, product_final, color, source)
+                Integration(QR, product_final, color, source, idc)
             }
         } else{
             alert("ERRO: FOI IDENTIFICADO ID QUE NÃO ATENDE AO CRITÉRIO DE 16 CARACTERES, ANALISE E TENTE NOVAMENTE!");
@@ -66,8 +67,7 @@ function getData(element) {
     }
     if (element == "f2") {
         document.getElementById("generateF2").onclick = function () { };
-        document.getElementById("generateF2").style.backgroundColor = "red";
-        document.getElementById("generateF2").innerHTML = "GERADO!"
+        document.getElementById("generateF2").innerHTML = "GERANDO..."
         var fileInput = document.getElementById('excel_file');
         var file = fileInput.files[0];
         var datas = {
@@ -139,8 +139,8 @@ function getData(element) {
                             var QR = datas.qr[c][0].innerHTML;
                             var color = window.getComputedStyle(document.body).getPropertyValue('background-color');
                             var source = "f2";
-
-                            Integration(QR, product_final, color, source);
+                            var idc = datas.id[c]
+                            Integration(QR, product_final, color, source, idc);
                         } else {
                             alert("ERRO: FOI IDENTIFICADO PRODUTO COM MAIS DE 150 CARACTERES, ANALISE E TENTE NOVAMENTE:" + firstColumnData[c]);
                             console.log("ERRO: FOI IDENTIFICADO PRODUTO COM MAIS DE 150 CARACTERES, ANALISE E TENTE NOVAMENTE:" + firstColumnData[c]);
@@ -164,6 +164,8 @@ function getData(element) {
             reader.readAsBinaryString(file);
 
         }
+        document.getElementById("generateF2").style.backgroundColor = "red";
+        document.getElementById("generateF2").innerHTML = "GERADO!"
     }
 
 }
@@ -226,7 +228,7 @@ function DownloadAllAsZip() {
 }
 
 
-function Integration(QR, PRODUCT, color, source) {
+function Integration(QR, PRODUCT, color, source, idc) {
     if (color == "rgb(254, 196, 3)") {
         //fundo amarelo
         var svg_final = `<?xml version="1.0" encoding="utf-8"?>
@@ -458,7 +460,7 @@ function Integration(QR, PRODUCT, color, source) {
         <svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
         <g>
         <!-- Segundo grupo (renderizado por cima) -->
-        <text x="30" y="300" fill="white" font-weight="bold" font-size="18px">
+        <text x="30" y="300" fill="white" font-weight="900" font-size="15px" font-family="Arial">
             <tspan x="30" dy="0">${PRODUCT.length > 30 ? PRODUCT.substring(0, 30) : PRODUCT}</tspan>
             <tspan x="30" dy="1.5em">${PRODUCT.length > 30 ? (PRODUCT.substring(30).length > 30 ? PRODUCT.substring(30, 60) : PRODUCT.substring(30)) : ''}</tspan>
             <tspan x="30" dy="1.5em">${PRODUCT.length > 60 ? (PRODUCT.substring(60).length > 30 ? PRODUCT.substring(60, 90) : PRODUCT.substring(60)) : ''}</tspan>
@@ -526,6 +528,7 @@ function Integration(QR, PRODUCT, color, source) {
                 c0-2.63-2.13-4.77-4.75-4.77h-7c-2.62,0-4.75,2.13-4.75,4.77v20.02c0,2.63-2.13,4.77-4.75,4.77h-19.95c-2.62,0-4.75,2.13-4.75,4.77
                 v7.03c0,2.63,2.13,4.77,4.75,4.77h19.95c2.62,0,4.75,2.13,4.75,4.77v20.02c0,2.63,2.13,4.77,4.75,4.77h7
                 c2.62,0,4.75-2.13,4.75-4.77v-20.02c0-2.63,2.13-4.77,4.75-4.77h19.95C305.4,168.6,307.53,166.47,307.53,163.83z"/>
+                <text x="35" y="810" fill="white" font-weight="900" font-size="17px" font-family="Arial">${idc}</text>
         </g>
         </svg>`
 
