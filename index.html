@@ -79,13 +79,6 @@ inputField1.addEventListener('input', function (event) {
         // Se for, definir o valor do input para os primeiros 16 caracteres
         event.target.value = event.target.value.slice(0, 16);
     }
-
-    // Verificar se o valor inserido contém letras
-    if (/[a-zA-Z]/.test(event.target.value)) {
-        // Mostrar alerta de erro e limpar o campo
-        alert('ERRO = Por favor, insira apenas números.');
-        event.target.value = '';
-    }
 });
 
 
