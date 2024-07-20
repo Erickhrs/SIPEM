@@ -29,7 +29,7 @@ function getData(element) {
         //pegando as infos
         datas.name = document.getElementById("in_produto").value
         datas.id = document.getElementById("in_id").value
-        if (datas.id.length === 16) {
+        if (datas.id.length <= 16) {
             datas.link = `https://embramais.auvo.com.br/Ticket/Novo?eq=1669429&id=${datas.id}&admin=54442`
             //gerando qr code
             qrcodes = [
@@ -61,8 +61,8 @@ function getData(element) {
                 Integration(QR, product_final, color, source, idc)
             }
         } else{
-            alert("ERRO: FOI IDENTIFICADO ID QUE NÃO ATENDE AO CRITÉRIO DE 16 CARACTERES, ANALISE E TENTE NOVAMENTE!");
-            console.log("ERRO: FOI IDENTIFICADO ID QUE NÃO ATENDE AO CRITÉRIO DE 16 CARACTERES, ANALISE E TENTE NOVAMENTE!");
+            alert("ERRO: FOI IDENTIFICADO ID QUE NÃO ATENDE AO CRITÉRIO DE MÁXIMO 16 CARACTERES, ANALISE E TENTE NOVAMENTE!");
+            console.log("ERRO: FOI IDENTIFICADO ID QUE NÃO ATENDE AO CRITÉRIO DE MÁXIMO 16 CARACTERES, ANALISE E TENTE NOVAMENTE!");
         }
     }
     if (element == "f2") {
@@ -109,15 +109,11 @@ function getData(element) {
                         break;
                     }
 
-                    // Verificar se thirdColumnData[c] contém apenas números
-                    if (!/^\d+$/.test(thirdColumnData[c])) {
-                        // Mostrar alerta de erro e interromper o loop
-                        alert("ERRO: FOI IDENTIFICADO ID COM CARACTERES QUE NÃO SÃO NÚMEROS, ANALISE E TENTE NOVAMENTE:" + thirdColumnData[c]);
-                        console.log("ERRO: FOI IDENTIFICADO ID COM CARACTERES QUE NÃO SÃO NÚMEROS, ANALISE E TENTE NOVAMENTE:" + thirdColumnData[c]);
+                    if (thirdColumnData[c].length > 16) {
+                        alert("ERRO: FOI IDENTIFICADO ID QUE NÃO ATENDE AO CRITÉRIO DE MÁXIMO 16 CARACTERES, ANALISE E TENTE NOVAMENTE:" + thirdColumnData[c]);
+                        console.log("ERRO: FOI IDENTIFICADO ID QUE NÃO ATENDE AO CRITÉRIO DE 16 CARACTERES, ANALISE E TENTE NOVAMENTE:" + thirdColumnData[c]);
                         break;
-                    }
-
-                    if (thirdColumnData[c].length === 16) {
+                    } else {
                         if (firstColumnData[c].length <= 150) {
                             datas.name[c] = firstColumnData[c];
                             datas.id[c] = thirdColumnData[c];
@@ -146,10 +142,6 @@ function getData(element) {
                             console.log("ERRO: FOI IDENTIFICADO PRODUTO COM MAIS DE 150 CARACTERES, ANALISE E TENTE NOVAMENTE:" + firstColumnData[c]);
                             break;
                         }
-                    } else {
-                        alert("ERRO: FOI IDENTIFICADO ID QUE NÃO ATENDE AO CRITÉRIO DE 16 CARACTERES, ANALISE E TENTE NOVAMENTE:" + thirdColumnData[c]);
-                        console.log("ERRO: FOI IDENTIFICADO ID QUE NÃO ATENDE AO CRITÉRIO DE 16 CARACTERES, ANALISE E TENTE NOVAMENTE:" + thirdColumnData[c]);
-                        break;
                     }
                 }
 
