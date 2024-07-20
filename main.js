@@ -109,15 +109,11 @@ function getData(element) {
                         break;
                     }
 
-                    // Verificar se thirdColumnData[c] contém apenas números
-                    if (!/^\d+$/.test(thirdColumnData[c])) {
-                        // Mostrar alerta de erro e interromper o loop
-                        alert("ERRO: FOI IDENTIFICADO ID COM CARACTERES QUE NÃO SÃO NÚMEROS, ANALISE E TENTE NOVAMENTE:" + thirdColumnData[c]);
-                        console.log("ERRO: FOI IDENTIFICADO ID COM CARACTERES QUE NÃO SÃO NÚMEROS, ANALISE E TENTE NOVAMENTE:" + thirdColumnData[c]);
+                    if (thirdColumnData[c].length > 16) {
+                        alert("ERRO: FOI IDENTIFICADO ID QUE NÃO ATENDE AO CRITÉRIO DE MÁXIMO 16 CARACTERES, ANALISE E TENTE NOVAMENTE:" + thirdColumnData[c]);
+                        console.log("ERRO: FOI IDENTIFICADO ID QUE NÃO ATENDE AO CRITÉRIO DE 16 CARACTERES, ANALISE E TENTE NOVAMENTE:" + thirdColumnData[c]);
                         break;
-                    }
-
-                    if (thirdColumnData[c].length === 16) {
+                    } else {
                         if (firstColumnData[c].length <= 150) {
                             datas.name[c] = firstColumnData[c];
                             datas.id[c] = thirdColumnData[c];
@@ -146,10 +142,6 @@ function getData(element) {
                             console.log("ERRO: FOI IDENTIFICADO PRODUTO COM MAIS DE 150 CARACTERES, ANALISE E TENTE NOVAMENTE:" + firstColumnData[c]);
                             break;
                         }
-                    } else {
-                        alert("ERRO: FOI IDENTIFICADO ID QUE NÃO ATENDE AO CRITÉRIO DE 16 CARACTERES, ANALISE E TENTE NOVAMENTE:" + thirdColumnData[c]);
-                        console.log("ERRO: FOI IDENTIFICADO ID QUE NÃO ATENDE AO CRITÉRIO DE 16 CARACTERES, ANALISE E TENTE NOVAMENTE:" + thirdColumnData[c]);
-                        break;
                     }
                 }
 
