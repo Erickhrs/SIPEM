@@ -318,10 +318,13 @@ body {
 
 
   svg {
-    width: 15%;
     margin-top: 25px;
 }
-
+#root{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+}
 
 .question-button {
     position: fixed;
