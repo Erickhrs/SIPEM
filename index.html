@@ -18,8 +18,9 @@
         </header>
         <section>
             <p>De que forma deseja gerar o identificador?</p>
-            <button onclick="StartCard('f1')">IDENTIFICADOR ÚNICO</button>
-            <button onclick="StartCard('f2')">VÁRIOS IDENTIFICADORES </button>
+            <button onclick="StartCard('f1')">IDENTIFICADOR ÚNICO SVG</button>
+            <button onclick="StartCard('f2')">VÁRIOS IDENTIFICADORES SV </button>
+            <button onclick="StartCard('f3')">VÁRIOS IDENTIFICADORES PDF </button>
         </section>
     </section>
 
@@ -37,6 +38,13 @@
         <label for="dados">ANEXE SEU ARQUIVO EXCEL</label>
         <input type="file" id="excel_file" accept=".xls, .xlsx">
         <button onclick="getData('f2')" id="generateF2">GERAR</button>
+    </section>
+
+    <section id="container-f3">
+        <nav><span onclick="CloseCard('f3')">🔴</span></nav>
+        <label for="dados">ANEXE SEU ARQUIVO EXCEL</label>
+        <input type="file" id="excel_file" accept=".xls, .xlsx">
+        <button onclick="getData('f3')" id="generateF3">GERAR</button>
     </section>
 
     <button id="openCardButton" class="question-button">&#63;</button>

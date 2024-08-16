@@ -1,25 +1,10 @@
 function StartCard(element) {
-    if (element == "f1") {
         document.getElementById("container-main").style.display = "none";
-        document.getElementById("container-f1").style.display = "flex";
-    }
-    if (element == "f2") {
-        document.getElementById("container-main").style.display = "none";
-        document.getElementById("container-f2").style.display = "flex";
-    }
+        document.getElementById("container-" + element).style.display = "flex";
 }
 
 function CloseCard(element) {
-    if (element == "f1") {
-        document.getElementById("container-main").style.display = "flex";
-        document.getElementById("container-f1").style.display = "none";
         window.location.reload();
-    }
-    if (element == "f2") {
-        document.getElementById("container-main").style.display = "flex";
-        document.getElementById("container-f2").style.display = "none";
-        window.location.reload();
-    }
 }
 
 
