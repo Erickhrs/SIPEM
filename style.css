@@ -436,3 +436,98 @@ body {
     padding: 6px;
     color: white;
 }
+
+body {
+    position: relative;
+    overflow: hidden;
+}
+
+.floating-symbols {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.symbol {
+    position: absolute;
+    font-size: 2rem;
+    color: rgba(94, 7, 170, 0.5); /* Use a cor roxa com transparência */
+    animation: float 10s infinite linear;
+}
+
+.symbol:nth-child(2n) {
+    animation-duration: 12s;
+    animation-direction: reverse;
+}
+
+.symbol:nth-child(3n) {
+    animation-duration: 15s;
+}
+
+@keyframes float {
+    from {
+        transform: translateY(100vh) translateX(0);
+    }
+    to {
+        transform: translateY(-100vh) translateX(20vw);
+    }
+}
+
+.floating-symbols {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.symbol {
+    position: absolute;
+    font-size: 150px;
+    color: #d2a41e52; /* Cor dos símbolos */
+    animation: float 30s infinite linear; /* Duração da animação estendida para 30 segundos */
+}
+
+.symbol:nth-child(2n) {
+    animation-duration: 35s; /* Ajuste adicional para variação */
+}
+
+.symbol:nth-child(3n) {
+    animation-duration: 40s; /* Ajuste adicional para variação */
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+    50% {
+        transform: translateY(50vh) translateX(25vw); /* Ajuste da posição intermediária */
+    }
+    100% {
+        transform: translateY(-50vh) translateX(-25vw); /* Ajuste da posição final */
+    }
+}
+
+/* Aleatorizando a posição inicial dos símbolos */
+.symbol {
+    top: calc(100% * var(--random-top, 0));
+    left: calc(100% * var(--random-left, 0));
+    animation-duration: calc(20s + var(--random-duration, 0) * 20s); /* Ajuste da duração para uma animação mais lenta */
+    animation-delay: calc(-20s + var(--random-duration, 0) * 20s); /* Ajuste do atraso da animação */
+}
+
+.symbol:nth-child(1) { --random-top: 0.18; --random-left: 0.8; --random-duration: 0.2; }
+.symbol:nth-child(2) { --random-top: 0.88; --random-left: 0.6; --random-duration: 0.3; }
+.symbol:nth-child(3) { --random-top: 0.48; --random-left: 0.2; --random-duration: 0.5; }
+.symbol:nth-child(4) { --random-top: 0.158; --random-left: 0.5; --random-duration: 0.6; }
+.symbol:nth-child(5) { --random-top: 0.15; --random-left: 0.9; --random-duration: 0.7; }
+.symbol:nth-child(6) { --random-top: 0.58; --random-left: 0.56; --random-duration: 0.4; }
+.symbol:nth-child(7) { --random-top: 0.26; --random-left: 0.15; --random-duration: 0.4; }
+.symbol:nth-child(8) { --random-top: 0.12; --random-left: 0.25; --random-duration: 0.4; }
+

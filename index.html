@@ -12,12 +12,23 @@
 </head>
 
 <body>
+    <div class="floating-symbols">
+        <div class="symbol">+</div>
+        <div class="symbol">+</div>
+        <div class="symbol">+</div>
+        <div class="symbol">+</div>
+        <div class="symbol">+</div>
+        <div class="symbol">+</div>
+        <div class="symbol">+</div>
+        <div class="symbol">+</div>
+        <!-- Adicione mais símbolos conforme necessário -->
+    </div>
     <section id="container-main">
         <header>
             <h1><span class="colorY">SIPEM</span>- SISTEMA IDENTIFICADOR DE PRODUTOS EMBRAMAIS</h1>
         </header>
-        <section>
-            <p>De que forma deseja gerar o identificador?</p>
+        <section> 
+            <img src="https://www.embramais.com.br/img/logo/embramais.webp" alt="" style="width: 85px;    padding: 10px;">
             <button onclick="StartCard('f4')">📄 IDENTIFICADOR ÚNICO PNG</button>
             <button onclick="StartCard('f1')">📄 IDENTIFICADOR ÚNICO SVG</button>
             <button onclick="StartCard('f3')">📁VÁRIOS IDENTIFICADORES PDF </button>
@@ -71,7 +82,7 @@
                 <p><span style="color: darkblue; font-weight: bold;">MÁXIMO CARACTERES PRODUTOS:</span> 140</p>
                 <p><span style="color: darkblue; font-weight: bold;">TIPO DE ARQUIVOS ACEITOS:</span> .xls, .xlsx</p>
                 <p><span style="color: darkblue; font-weight: bold;">VERSÕES DISPONÍVEIS:</span> Amarelo (PADRÃO)</p>
-                <p><span style="color: darkblue; font-weight: bold;">VERSÃO SISTEMA:</span>1.2</p>
+                <p><span style="color: darkblue; font-weight: bold;">VERSÃO SISTEMA:</span> 2.0</p>
             </div>
             <p style="color: black; font-weight: bold;"">TODOS OS DIREITOS RESERVADOS PARA EMBRAMAIS SERVIÇO DE INSTALAÇÃO E MANUTENÇÃO LTDA ©</p>
               <p style=" font-size: 10px; margin-top: -10px;"">Sistema desenvolvido por Erick Rosa. Para suporte ou
@@ -137,12 +148,18 @@
                 button.style.backgroundColor = '#FEC403'; // Botão fica amarelo
                 button.style.borderColor = '#FEC403'; // Borda fica amarela
                 icon.style.color = '#ffffff'; // Ícone fica branco
+                document.querySelectorAll('.symbol').forEach(function(symbol) {
+    symbol.style.color = '#55b9df94';
+});
             } else {
                 body.style.backgroundColor = '#FEC403';
                 icon.textContent = '🎨'; // Ícone para fundo branco
                 button.style.backgroundColor = '#ffffff'; // Botão fica branco
                 button.style.borderColor = '#ffffff'; // Borda fica branca
                 icon.style.color = '#FEC403'; // Ícone fica amarelo
+                document.querySelectorAll('.symbol').forEach(function(symbol) {
+    symbol.style.color = '#d2a41e52';
+});
             }
         });
     </script>
