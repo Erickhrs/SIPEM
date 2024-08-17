@@ -253,7 +253,7 @@ body {
     color: #2c813b;
 }
 
-#container-f1 nav span, #container-f2 nav span{
+#container-f1 nav span, #container-f2 nav span, #container-f3 nav span, #container-f4 nav span{
     display: flex;
     justify-content: end;
     cursor: pointer;
@@ -416,4 +416,23 @@ body {
 
 #closeCardButton {
     margin-top: 20px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+* {
+    animation: fadeIn 1s ease-in-out;
+}
+#pageTitle{
+    background-color: #0C89B9;
+    border-radius: 10px;
+    padding: 6px;
+    color: white;
 }

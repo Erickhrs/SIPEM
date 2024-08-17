@@ -224,9 +224,6 @@ function getData(element) {
                     }
                 }
 
-
-                DownloadAllAsZip()
-
             };
             reader.onerror = function (ex) {
                 console.error("Erro ao ler o arquivo", ex);
@@ -235,8 +232,9 @@ function getData(element) {
             reader.readAsBinaryString(file);
 
         }
-        document.getElementById("generateF3").style.backgroundColor = "red";
-        document.getElementById("generateF3").innerHTML = "GERADO!"
+        document.getElementById("generateF3").style.backgroundColor = "greenYellow";
+        document.getElementById("generateF3").style.color = "green";
+        document.getElementById("generateF3").innerHTML = "GERAR PDF"
     }
     if (element == "f4") {
         //pegando as infos
@@ -320,14 +318,6 @@ function DownloadSvg(element, fileName, source) {
         svgBlobs.push({ name: `${fileName}.svg`, blob: blob });
     }
     if (source == 'f3') {
-        // Verificar se o elemento é uma string (código SVG) ou um elemento DOM
-        var svgContent = typeof element === 'string' ? element : new XMLSerializer().serializeToString(element);
-
-        // Criar um objeto Blob para representar o SVG como um arquivo
-        var blob = new Blob([svgContent], { type: 'image/svg+xml' });
-
-        // Adicionar o blob ao array svgBlobs
-        svgBlobs.push({ name: `${fileName}.svg`, blob: blob });
 
     }
     if (source == 'f4') {
@@ -714,8 +704,6 @@ function Integration(QR, PRODUCT, color, source, idc) {
     
             // Adicionar o SVG ao body
             document.getElementById('root').appendChild(svgElement);
-    
-            DownloadSvg(svg_final, PRODUCT, source)
         } else{
         var parser = new DOMParser();
         var svgElement = parser.parseFromString(svg_final, 'image/svg+xml').documentElement;
