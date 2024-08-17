@@ -21,6 +21,7 @@
             <button onclick="StartCard('f1')">IDENTIFICADOR ÚNICO SVG</button>
             <button onclick="StartCard('f2')">VÁRIOS IDENTIFICADORES SV </button>
             <button onclick="StartCard('f3')">VÁRIOS IDENTIFICADORES PDF </button>
+            <button onclick="StartCard('f4')">IDENTIFICADOR ÚNICO PNG</button>
         </section>
     </section>
 
@@ -45,6 +46,15 @@
         <label for="dados">ANEXE SEU ARQUIVO EXCEL</label>
         <input type="file" id="excel_file3" accept=".xls, .xlsx">
         <button onclick="getData('f3')" id="generateF3">GERAR</button>
+    </section>
+
+    <section id="container-f4">
+        <nav><span onclick="CloseCard('f1')">🔴</span></nav>
+        <label for="id">IDENTIFICADOR:</label>
+        <input type="text" placeholder="adicione o ID aqui" name="id" id="in_id4">
+        <label for="produto">PRODUTO:</label>
+        <input type="nome do produto" placeholder="adicione o nome do produto aqui" name="produto" id="in_produto4">
+        <button onclick="getData('f4')" id="generateF4">GERAR</button>
     </section>
 
     <button id="openCardButton" class="question-button">&#63;</button>

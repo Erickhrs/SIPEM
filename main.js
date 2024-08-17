@@ -238,7 +238,46 @@ function getData(element) {
         document.getElementById("generateF3").style.backgroundColor = "red";
         document.getElementById("generateF3").innerHTML = "GERADO!"
     }
+    if (element == "f4") {
+        //pegando as infos
+        datas.name = document.getElementById("in_produto4").value
+        datas.id = document.getElementById("in_id4").value
+        if (datas.id.length <= 16) {
+            datas.link = `https://embramais.auvo.com.br/Ticket/Novo?eq=1669429&id=${datas.id}&admin=54442`
+            //gerando qr code
+            qrcodes = [
+                new QRCode({
 
+                    msg: datas.link
+                    , dim: 200
+                    , pad: 4
+                    , mtx: -1
+                    , ecl: "H"
+                    , ecb: 1
+                    , pal: ["black", "#fff"]
+                    , vrb: 0
+
+                })
+            ];
+
+            //integrando
+            for (var c = 0; c < qrcodes.length; c++) {
+                //document.body.appendChild( qrcodes[ c ] );
+                console.log(datas)
+                datas.qr = qrcodes[c]
+                var product_final = datas.name;
+                var QR = qrcodes[c].innerHTML
+                var color = window.getComputedStyle(document.body).getPropertyValue('background-color');
+                var source = "f4"
+                var idc = datas.id
+
+                Integration(QR, product_final, color, source, idc)
+            }
+        } else{
+            alert("ERRO: FOI IDENTIFICADO ID QUE NÃO ATENDE AO CRITÉRIO DE MÁXIMO 16 CARACTERES, ANALISE E TENTE NOVAMENTE!");
+            console.log("ERRO: FOI IDENTIFICADO ID QUE NÃO ATENDE AO CRITÉRIO DE MÁXIMO 16 CARACTERES, ANALISE E TENTE NOVAMENTE!");
+        }
+    }
 }
 
 function printScreen(){
@@ -291,6 +330,49 @@ function DownloadSvg(element, fileName, source) {
         svgBlobs.push({ name: `${fileName}.svg`, blob: blob });
 
     }
+    if (source == 'f4') {
+        // Verificar se o elemento é uma string (código SVG) ou um elemento DOM
+        var svgContent = typeof element === 'string' ? element : new XMLSerializer().serializeToString(element);
+    
+        // Criar uma imagem SVG para renderizar no canvas
+        var img = new Image();
+        var svgBlob = new Blob([svgContent], { type: 'image/svg+xml' });
+        var url = URL.createObjectURL(svgBlob);
+    
+        img.onload = function () {
+            // Criar um canvas para desenhar a imagem
+            var canvas = document.createElement('canvas');
+            canvas.width = 425; // Usar número em vez de string para definir largura
+            canvas.height = 850.39; // Usar número em vez de string para definir altura
+            var ctx = canvas.getContext('2d');
+    
+            // Desenhar a imagem SVG no canvas
+            ctx.drawImage(img, 0, 0);
+    
+            // Converter o conteúdo do canvas para PNG
+            canvas.toBlob(function (blob) {
+                // Criar um elemento <a> para o download
+                var a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = `${fileName}.png`;
+    
+                // Adicionar o elemento <a> ao corpo do documento e simular o clique
+                document.body.appendChild(a);
+                a.click();
+    
+                // Remover o elemento <a> do corpo do documento
+                document.body.removeChild(a);
+            }, 'image/png');
+    
+            // Liberar a URL do objeto
+            URL.revokeObjectURL(url);
+        };
+    
+        // Definir a fonte da imagem SVG
+        img.src = url;
+    }
+    
+    
 }
 
 function DownloadAllAsZip() {
@@ -644,8 +726,7 @@ function Integration(QR, PRODUCT, color, source, idc) {
 
         // Adicionar o SVG ao body
         document.body.appendChild(svgElement);
-        window.print()
-        DownloadSvg(svg_final, PRODUCT, source)
+        DownloadSvg(svg_final, PRODUCT, source);
         }
 
        

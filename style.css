@@ -160,6 +160,54 @@ body {
     color: #2c813b;
 }
 
+/*CARD GERAÇÃO ÚNICA PNG*/
+#container-f4{
+    text-align: center;
+    padding: 5px;
+    display: none;
+    justify-content: center;
+    flex-direction: column;
+    width: 65%;
+    margin: auto;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.305);
+    padding: 20px;
+    transition: box-shadow 0.3s, padding 0.3s;
+    gap: 15px;
+    margin-top: 125px;
+}
+#container-f4 input{
+    height: 30px;
+    border-radius: 8px;
+    border: 2px solid #056186;
+}
+#container-f4 label{
+    color:#056186;
+    font-weight: bold;
+}
+#container-f4 button{
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+    background-color: #0C89B9;
+
+
+    border: none;
+    transition: background-color 0.3s, transform 0.3s;
+    max-width: 573px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#container-f4 button:hover {
+    background-color: #FEC403;
+    transform: scale(1.05);
+    font-weight: bold;
+    color: #2c813b;
+}
+
+
 
 /*CARD GERAÇÃO MULTIPLA svg*/
 #container-f2{
