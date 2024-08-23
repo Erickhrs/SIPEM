@@ -160,8 +160,56 @@ body {
     color: #2c813b;
 }
 
+/*CARD GERAÇÃO ÚNICA PNG*/
+#container-f4{
+    text-align: center;
+    padding: 5px;
+    display: none;
+    justify-content: center;
+    flex-direction: column;
+    width: 65%;
+    margin: auto;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.305);
+    padding: 20px;
+    transition: box-shadow 0.3s, padding 0.3s;
+    gap: 15px;
+    margin-top: 125px;
+}
+#container-f4 input{
+    height: 30px;
+    border-radius: 8px;
+    border: 2px solid #056186;
+}
+#container-f4 label{
+    color:#056186;
+    font-weight: bold;
+}
+#container-f4 button{
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+    background-color: #0C89B9;
 
-/*CARD GERAÇÃO MULTIPLA*/
+
+    border: none;
+    transition: background-color 0.3s, transform 0.3s;
+    max-width: 573px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#container-f4 button:hover {
+    background-color: #FEC403;
+    transform: scale(1.05);
+    font-weight: bold;
+    color: #2c813b;
+}
+
+
+
+/*CARD GERAÇÃO MULTIPLA svg*/
 #container-f2{
     text-align: center;
     padding: 5px;
@@ -205,7 +253,58 @@ body {
     color: #2c813b;
 }
 
-#container-f1 nav span, #container-f2 nav span{
+#container-f1 nav span, #container-f2 nav span, #container-f3 nav span, #container-f4 nav span{
+    display: flex;
+    justify-content: end;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+/*CARD GERAÇÃO MULTIPLA pdf*/
+#container-f3{
+    text-align: center;
+    padding: 5px;
+    display: none;
+    justify-content: center;
+    flex-direction: column;
+    width: 65%;
+    margin: auto;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.305);
+    padding: 20px;
+    transition: box-shadow 0.3s, padding 0.3s;
+    gap: 20px;
+    margin-top: 125px;
+}
+#container-f3 input{
+    margin-left: auto;
+    margin-right: auto;
+}
+#container-f3 label{
+    color:#056186;
+    font-weight: bold;
+}
+#container-f3 button{
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+    background-color: #0C89B9;
+    border: none;
+    transition: background-color 0.3s, transform 0.3s;
+    max-width: 573px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#container-f3 button:hover {
+    background-color: #FEC403;
+    transform: scale(1.05);
+    font-weight: bold;
+    color: #2c813b;
+}
+
+#container-f3 nav span, #container-f2 nav span{
     display: flex;
     justify-content: end;
     cursor: pointer;
@@ -264,13 +363,16 @@ body {
     border-radius: 3px;
     background: white;
   }
-
-
-  svg {
-    width: 15%;
-    margin-top: 25px;
+#root{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
 }
-
+#root svg {
+    flex: 0 0 25%;
+    box-sizing: border-box;
+    padding: 5px;
+}
 
 .question-button {
     position: fixed;
@@ -315,3 +417,117 @@ body {
 #closeCardButton {
     margin-top: 20px;
 }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+* {
+    animation: fadeIn 1s ease-in-out;
+}
+#pageTitle{
+    background-color: #0C89B9;
+    border-radius: 10px;
+    padding: 6px;
+    color: white;
+}
+
+body {
+    position: relative;
+    overflow: hidden;
+}
+
+.floating-symbols {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.symbol {
+    position: absolute;
+    font-size: 2rem;
+    color: rgba(94, 7, 170, 0.5); /* Use a cor roxa com transparência */
+    animation: float 10s infinite linear;
+}
+
+.symbol:nth-child(2n) {
+    animation-duration: 12s;
+    animation-direction: reverse;
+}
+
+.symbol:nth-child(3n) {
+    animation-duration: 15s;
+}
+
+@keyframes float {
+    from {
+        transform: translateY(100vh) translateX(0);
+    }
+    to {
+        transform: translateY(-100vh) translateX(20vw);
+    }
+}
+
+.floating-symbols {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.symbol {
+    position: absolute;
+    font-size: 150px;
+    color: #d2a41e52; /* Cor dos símbolos */
+    animation: float 30s infinite linear; /* Duração da animação estendida para 30 segundos */
+}
+
+.symbol:nth-child(2n) {
+    animation-duration: 35s; /* Ajuste adicional para variação */
+}
+
+.symbol:nth-child(3n) {
+    animation-duration: 40s; /* Ajuste adicional para variação */
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+    50% {
+        transform: translateY(50vh) translateX(25vw); /* Ajuste da posição intermediária */
+    }
+    100% {
+        transform: translateY(-50vh) translateX(-25vw); /* Ajuste da posição final */
+    }
+}
+
+/* Aleatorizando a posição inicial dos símbolos */
+.symbol {
+    top: calc(100% * var(--random-top, 0));
+    left: calc(100% * var(--random-left, 0));
+    animation-duration: calc(20s + var(--random-duration, 0) * 20s); /* Ajuste da duração para uma animação mais lenta */
+    animation-delay: calc(-20s + var(--random-duration, 0) * 20s); /* Ajuste do atraso da animação */
+}
+
+.symbol:nth-child(1) { --random-top: 0.18; --random-left: 0.8; --random-duration: 0.2; }
+.symbol:nth-child(2) { --random-top: 0.88; --random-left: 0.6; --random-duration: 0.3; }
+.symbol:nth-child(3) { --random-top: 0.48; --random-left: 0.2; --random-duration: 0.5; }
+.symbol:nth-child(4) { --random-top: 0.158; --random-left: 0.5; --random-duration: 0.6; }
+.symbol:nth-child(5) { --random-top: 0.15; --random-left: 0.9; --random-duration: 0.7; }
+.symbol:nth-child(6) { --random-top: 0.58; --random-left: 0.56; --random-duration: 0.4; }
+.symbol:nth-child(7) { --random-top: 0.26; --random-left: 0.15; --random-duration: 0.4; }
+.symbol:nth-child(8) { --random-top: 0.12; --random-left: 0.25; --random-duration: 0.4; }
+

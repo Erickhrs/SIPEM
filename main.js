@@ -1,25 +1,10 @@
 function StartCard(element) {
-    if (element == "f1") {
         document.getElementById("container-main").style.display = "none";
-        document.getElementById("container-f1").style.display = "flex";
-    }
-    if (element == "f2") {
-        document.getElementById("container-main").style.display = "none";
-        document.getElementById("container-f2").style.display = "flex";
-    }
+        document.getElementById("container-" + element).style.display = "flex";
 }
 
 function CloseCard(element) {
-    if (element == "f1") {
-        document.getElementById("container-main").style.display = "flex";
-        document.getElementById("container-f1").style.display = "none";
         window.location.reload();
-    }
-    if (element == "f2") {
-        document.getElementById("container-main").style.display = "flex";
-        document.getElementById("container-f2").style.display = "none";
-        window.location.reload();
-    }
 }
 
 
@@ -159,6 +144,145 @@ function getData(element) {
         document.getElementById("generateF2").style.backgroundColor = "red";
         document.getElementById("generateF2").innerHTML = "GERADO!"
     }
+    if (element == "f3") {
+        document.getElementById("generateF3").onclick = function () { printScreen(); };
+        document.getElementById("generateF3").innerHTML = "GERANDO..."
+        var fileInput = document.getElementById('excel_file3');
+        var file = fileInput.files[0];
+        var datas = {
+            name: [],
+            id: [],
+            link: [],
+            qr: []
+
+        };
+
+
+        if (file) {
+            var reader = new FileReader();
+            var qrcodes = new Object();
+            reader.onload = function (e) {
+                var data = e.target.result;
+                var workbook = XLSX.read(data, { type: 'binary' });
+                var sheetName = workbook.SheetNames[0]; // Pega o nome da primeira planilha
+                var worksheet = workbook.Sheets[sheetName];
+
+                // Converte o worksheet para um array de objetos
+                var rows = XLSX.utils.sheet_to_json(worksheet);
+
+                // Pega todos os dados da primeira e da terceira coluna
+                var firstColumnData = rows.map(row => row[Object.keys(row)[0]]);
+                var thirdColumnData = rows.map(row => row[Object.keys(row)[2]]);
+
+                // console.log("Primeira coluna:", firstColumnData);
+                //  console.log("Terceira coluna:", thirdColumnData);
+
+                for (var c = 1; c < firstColumnData.length; c++) {
+                    console.log(thirdColumnData[c]);
+
+                    // Verificar se thirdColumnData[c] é undefined, 0 ou similar
+                    if (thirdColumnData[c] === undefined || thirdColumnData[c] === 0 || thirdColumnData[c] === '0' || thirdColumnData[c] === '') {
+                        // Mostrar alerta de erro e interromper o loop
+                        alert("ERRO: ID NÃO PODE SER UNDEFINED, 0 OU VAZIO, ANALISE E TENTE NOVAMENTE.");
+                        console.log("ERRO: ID NÃO PODE SER UNDEFINED, 0 OU VAZIO, ANALISE E TENTE NOVAMENTE.");
+                        break;
+                    }
+
+                    if (thirdColumnData[c].length > 16) {
+                        alert("ERRO: FOI IDENTIFICADO ID QUE NÃO ATENDE AO CRITÉRIO DE MÁXIMO 16 CARACTERES, ANALISE E TENTE NOVAMENTE:" + thirdColumnData[c]);
+                        console.log("ERRO: FOI IDENTIFICADO ID QUE NÃO ATENDE AO CRITÉRIO DE 16 CARACTERES, ANALISE E TENTE NOVAMENTE:" + thirdColumnData[c]);
+                        break;
+                    } else {
+                        if (firstColumnData[c].length <= 150) {
+                            datas.name[c] = firstColumnData[c];
+                            datas.id[c] = thirdColumnData[c];
+                            datas.link[c] = `https://embramais.auvo.com.br/Ticket/Novo?eq=1669429&id=${datas.id[c]}&admin=54442`;
+                            datas.qr[c] = [
+                                new QRCode({
+                                    msg: datas.link[c],
+                                    dim: 200,
+                                    pad: 4,
+                                    mtx: -1,
+                                    ecl: "H",
+                                    ecb: 1,
+                                    pal: ["black", "#fff"],
+                                    vrb: 0
+                                })
+                            ];
+                            console.log(datas);
+                            var product_final = datas.name[c];
+                            var QR = datas.qr[c][0].innerHTML;
+                            var color = window.getComputedStyle(document.body).getPropertyValue('background-color');
+                            var source = "f3";
+                            var idc = datas.id[c]
+                            Integration(QR, product_final, color, source, idc);
+                        } else {
+                            alert("ERRO: FOI IDENTIFICADO PRODUTO COM MAIS DE 150 CARACTERES, ANALISE E TENTE NOVAMENTE:" + firstColumnData[c]);
+                            console.log("ERRO: FOI IDENTIFICADO PRODUTO COM MAIS DE 150 CARACTERES, ANALISE E TENTE NOVAMENTE:" + firstColumnData[c]);
+                            break;
+                        }
+                    }
+                }
+
+            };
+            reader.onerror = function (ex) {
+                console.error("Erro ao ler o arquivo", ex);
+            };
+
+            reader.readAsBinaryString(file);
+
+        }
+        document.getElementById("generateF3").style.backgroundColor = "greenYellow";
+        document.getElementById("generateF3").style.color = "green";
+        document.getElementById("generateF3").innerHTML = "GERAR PDF"
+    }
+    if (element == "f4") {
+        //pegando as infos
+        datas.name = document.getElementById("in_produto4").value
+        datas.id = document.getElementById("in_id4").value
+        if (datas.id.length <= 16) {
+            datas.link = `https://embramais.auvo.com.br/Ticket/Novo?eq=1669429&id=${datas.id}&admin=54442`
+            //gerando qr code
+            qrcodes = [
+                new QRCode({
+
+                    msg: datas.link
+                    , dim: 200
+                    , pad: 4
+                    , mtx: -1
+                    , ecl: "H"
+                    , ecb: 1
+                    , pal: ["black", "#fff"]
+                    , vrb: 0
+
+                })
+            ];
+
+            //integrando
+            for (var c = 0; c < qrcodes.length; c++) {
+                //document.body.appendChild( qrcodes[ c ] );
+                console.log(datas)
+                datas.qr = qrcodes[c]
+                var product_final = datas.name;
+                var QR = qrcodes[c].innerHTML
+                var color = window.getComputedStyle(document.body).getPropertyValue('background-color');
+                var source = "f4"
+                var idc = datas.id
+
+                Integration(QR, product_final, color, source, idc)
+            }
+        } else{
+            alert("ERRO: FOI IDENTIFICADO ID QUE NÃO ATENDE AO CRITÉRIO DE MÁXIMO 16 CARACTERES, ANALISE E TENTE NOVAMENTE!");
+            console.log("ERRO: FOI IDENTIFICADO ID QUE NÃO ATENDE AO CRITÉRIO DE MÁXIMO 16 CARACTERES, ANALISE E TENTE NOVAMENTE!");
+        }
+    }
+}
+
+function printScreen(){
+    document.getElementById('container-f3').style.display = 'none';
+    document.getElementById('colorButton').style.display = 'none';
+    document.getElementById('openCardButton').style.display = 'none';
+    window.print();
 
 }
 var svgBlobs = [];
@@ -193,6 +317,52 @@ function DownloadSvg(element, fileName, source) {
         // Adicionar o blob ao array svgBlobs
         svgBlobs.push({ name: `${fileName}.svg`, blob: blob });
     }
+    if (source == 'f3') {
+
+    }
+    if (source == 'f4') {
+        // Verificar se o elemento é uma string (código SVG) ou um elemento DOM
+        var svgContent = typeof element === 'string' ? element : new XMLSerializer().serializeToString(element);
+    
+        // Criar uma imagem SVG para renderizar no canvas
+        var img = new Image();
+        var svgBlob = new Blob([svgContent], { type: 'image/svg+xml' });
+        var url = URL.createObjectURL(svgBlob);
+    
+        img.onload = function () {
+            // Criar um canvas para desenhar a imagem
+            var canvas = document.createElement('canvas');
+            canvas.width = 425; // Usar número em vez de string para definir largura
+            canvas.height = 850.39; // Usar número em vez de string para definir altura
+            var ctx = canvas.getContext('2d');
+    
+            // Desenhar a imagem SVG no canvas
+            ctx.drawImage(img, 0, 0);
+    
+            // Converter o conteúdo do canvas para PNG
+            canvas.toBlob(function (blob) {
+                // Criar um elemento <a> para o download
+                var a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = `${fileName}.png`;
+    
+                // Adicionar o elemento <a> ao corpo do documento e simular o clique
+                document.body.appendChild(a);
+                a.click();
+    
+                // Remover o elemento <a> do corpo do documento
+                document.body.removeChild(a);
+            }, 'image/png');
+    
+            // Liberar a URL do objeto
+            URL.revokeObjectURL(url);
+        };
+    
+        // Definir a fonte da imagem SVG
+        img.src = url;
+    }
+    
+    
 }
 
 function DownloadAllAsZip() {
@@ -524,6 +694,17 @@ function Integration(QR, PRODUCT, color, source, idc) {
         </g>
         </svg>`
 
+        if (source == 'f3'){
+            var parser = new DOMParser();
+            var svgElement = parser.parseFromString(svg_final, 'image/svg+xml').documentElement;
+    
+            // Definir dimensões visíveis para o SVG
+            svgElement.setAttribute('width', '20%');
+            svgElement.setAttribute('height', '20%');
+    
+            // Adicionar o SVG ao body
+            document.getElementById('root').appendChild(svgElement);
+        } else{
         var parser = new DOMParser();
         var svgElement = parser.parseFromString(svg_final, 'image/svg+xml').documentElement;
 
@@ -533,8 +714,10 @@ function Integration(QR, PRODUCT, color, source, idc) {
 
         // Adicionar o SVG ao body
         document.body.appendChild(svgElement);
+        DownloadSvg(svg_final, PRODUCT, source);
+        }
 
-        DownloadSvg(svg_final, PRODUCT, source)
+       
     }
     else if (color == "rgb(255, 255, 255)") {
         //fundo branco
