@@ -282,6 +282,7 @@ function printScreen(){
     document.getElementById('container-f3').style.display = 'none';
     document.getElementById('colorButton').style.display = 'none';
     document.getElementById('openCardButton').style.display = 'none';
+    document.querySelector('.floating-symbols').style.display = 'none';
     window.print();
 
 }
