@@ -632,7 +632,7 @@ function Integration(QR, PRODUCT, color, source, idc) {
         </text>
     </g>
     </svg>
-        <svg x="35" y="610" viewBox="0 0 57 57" width="180" height="180" fill="#000" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg" version="1.1">${QR}</svg>
+        <svg x="0" y="240" viewBox="0 0 57 57" width="423" height="423" fill="#000" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg" version="1.1">${QR}</svg>
         <g>
             <path class="st4" d="M111.54,57.58H74.78c-1.39,0-2.53,1.13-2.53,2.53v51.76c0,1.4,1.13,2.53,2.53,2.53h36.76
                 c1.39,0,2.53-1.13,2.53-2.53v-5.19c0-1.4-1.13-2.53-2.53-2.53H85.88c-1.39,0-2.53-1.13-2.53-2.53v-8.58c0-1.4,1.13-2.53,2.53-2.53
