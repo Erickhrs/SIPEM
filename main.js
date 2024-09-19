@@ -331,33 +331,46 @@ function DownloadSvg(element, fileName, source) {
         var url = URL.createObjectURL(svgBlob);
     
         img.onload = function () {
-            // Criar um canvas para desenhar a imagem
+            // Definir o tamanho desejado para a imagem
+            var width = 425;
+            var height = 850.39;
+        
+            // Definir a proporção de pixels para alta resolução (para telas retina)
+            var ratio = window.devicePixelRatio || 1;
+        
+            // Criar um canvas para desenhar a imagem com o tamanho e a proporção correta
             var canvas = document.createElement('canvas');
-            canvas.width = 425; // Usar número em vez de string para definir largura
-            canvas.height = 850.39; // Usar número em vez de string para definir altura
+            canvas.width = width * ratio;
+            canvas.height = height * ratio;
+            canvas.style.width = width + 'px';
+            canvas.style.height = height + 'px';
+        
+            // Obter o contexto 2D do canvas e aplicar a escala da proporção
             var ctx = canvas.getContext('2d');
-    
-            // Desenhar a imagem SVG no canvas
-            ctx.drawImage(img, 0, 0);
-    
+            ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+        
+            // Desenhar a imagem no canvas com as dimensões corretas
+            ctx.drawImage(img, 0, 0, width, height);
+        
             // Converter o conteúdo do canvas para PNG
             canvas.toBlob(function (blob) {
                 // Criar um elemento <a> para o download
                 var a = document.createElement('a');
                 a.href = URL.createObjectURL(blob);
                 a.download = `${fileName}.png`;
-    
+        
                 // Adicionar o elemento <a> ao corpo do documento e simular o clique
                 document.body.appendChild(a);
                 a.click();
-    
+        
                 // Remover o elemento <a> do corpo do documento
                 document.body.removeChild(a);
             }, 'image/png');
-    
+        
             // Liberar a URL do objeto
             URL.revokeObjectURL(url);
         };
+        
     
         // Definir a fonte da imagem SVG
         img.src = url;
