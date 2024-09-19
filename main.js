@@ -620,7 +620,7 @@ function Integration(QR, PRODUCT, color, source, idc) {
                 C217.45,582.35,216.16,581.06,216.16,579.49z M216.16,589.7c0-1.56,1.29-2.85,2.85-2.85c1.56,0,2.85,1.29,2.85,2.85
                 c0,1.56-1.29,2.85-2.85,2.85C217.45,592.54,216.16,591.25,216.16,589.7z"/>
         </g>
-        <svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+        <svg width="400" height="400" xmlns="http://www.w3.org/2000/svg" y="320" x="-15">
         <g>
         <!-- Segundo grupo (renderizado por cima) -->
         <text x="30" y="300" fill="white" font-weight="900" font-size="15px" font-family="Arial">
@@ -691,7 +691,7 @@ function Integration(QR, PRODUCT, color, source, idc) {
                 c0-2.63-2.13-4.77-4.75-4.77h-7c-2.62,0-4.75,2.13-4.75,4.77v20.02c0,2.63-2.13,4.77-4.75,4.77h-19.95c-2.62,0-4.75,2.13-4.75,4.77
                 v7.03c0,2.63,2.13,4.77,4.75,4.77h19.95c2.62,0,4.75,2.13,4.75,4.77v20.02c0,2.63,2.13,4.77,4.75,4.77h7
                 c2.62,0,4.75-2.13,4.75-4.77v-20.02c0-2.63,2.13-4.77,4.75-4.77h19.95C305.4,168.6,307.53,166.47,307.53,163.83z"/>
-                <text x="35" y="810" fill="white" font-weight="900" font-size="17px" font-family="Arial">${idc}</text>
+                <text y="650" x="15" fill="white" font-weight="900" font-size="17px" font-family="Arial">${idc}</text>
         </g>
         <svg xmlns="http://www.w3.org/2000/svg" id="Camada_1" data-name="Camada 1" viewBox="0 0 170.08 340.16" y="25">
   <defs>
